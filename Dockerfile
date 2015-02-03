@@ -1,4 +1,4 @@
-FROM nodesource/node:wheezy
+FROM nodesource/node:trusty
 
 COPY . /src/
 WORKDIR /src
