@@ -1,10 +1,14 @@
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var express = require('express');
 
-mongoose.connect('mongodb://172.17.0.3'); //TODO: Read this from /etc/hosts
-var Text = mongoose.model('Text', { text: String });
+mongoose.connect('mongodb://172.17.0.3/Texts'); //TODO: Read this from /etc/hosts
+var textSchema = new Schema ({
+  text: String
+})
+var Text = mongoose.model('Text', textSchema);
 
 var app = express();
 app.use(morgan('dev'));
@@ -19,17 +23,17 @@ app.post('/', function(req, res) {
   var input = req.body;
   if (input.text === undefined || input.text === null) {
     res.status(400).send('Please include a "text" field');
+  } else {
+    new Text({text: input.text})
+      .save(function(err, savedText) {
+        if (err) { 
+          console.log('ERROR', err); 
+          res.status(500).send('We could not save your text');
+        } else {
+          res.status(200).send(savedText);
+        }
+      });
   }
-
-  new Text({text: input.text})
-    .save(function(err, savedText) {
-      if (err) { 
-        console.log('ERROR', err); 
-        res.status(500).send('We could not save your text');
-      } else {
-        res.status(200).send(savedText);
-      }
-    });
 });
 
 app.listen(app.get('port'), function() {

@@ -1,7 +1,7 @@
 {
-  "name": "noderead",
+  "name": "nodewrite",
   "version": "1.0.0",
-  "description": "Node server to read from database",
+  "description": "Node server to write from database",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
