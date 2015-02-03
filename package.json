@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.11.0",
+    "bson": "^0.2.18",
     "express": "^4.11.2",
     "mongoose": "^3.8.22",
     "morgan": "^1.5.1"
