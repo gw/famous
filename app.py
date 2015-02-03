@@ -1,6 +1,13 @@
+import sys
+import os
+
 from flask import Flask, jsonify
 from pymongo import MongoClient
-client = MongoClient('mongodb://172.17.0.3:27017/')
+
+dbUrl = os.environ['DB_PORT_27017_TCP'][4:]
+mongoUrl = 'mongodb:' + dbUrl
+client = MongoClient(mongoUrl)
+
 db = client['Texts']
 
 app = Flask(__name__)
