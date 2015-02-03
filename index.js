@@ -4,7 +4,10 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var express = require('express');
 
-mongoose.connect('mongodb://172.17.0.3/Texts'); //TODO: Read this from /etc/hosts
+var dbUrl = process.env.DB_PORT_27017_TCP.slice(4);
+var mongoUrl = 'mongodb:' + dbUrl + '/Texts';
+
+mongoose.connect(mongoUrl); //TODO: Read this from /etc/hosts
 var textSchema = new Schema ({
   text: String
 })
