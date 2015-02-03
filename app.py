@@ -1,4 +1,7 @@
 from flask import Flask
+from pymongo import MongoClient
+#client = MongoClient('mongodb://172.17.0.3:27017/')
+#client = MongoClient('mongodb://localhost:27017/')
 
 app = Flask(__name__)
 
